@@ -1,0 +1,47 @@
+* {
+  user-select: none;
+}
+p-dialog {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .p-dialog {
+    max-width: 500px;
+  }
+  .p-dialog-header {
+    justify-content: center;
+  }
+  .p-dialog-content {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+.emoji {
+  max-width: 600px;
+  font-size: 50px;
+  cursor: pointer;
+  scale: 1;
+  transition: scale ease-in-out 250ms;
+}
+
+.checked {
+  scale: 1.3;
+  filter: drop-shadow(0 10px 2px #f9ff58);
+  transition: filter ease-in-out 200ms;
+}
+
+.unchecked {
+  &:hover {
+    scale: 1.3;
+  }
+}
+
+p-button button {
+  width: 100% !important;
+}
