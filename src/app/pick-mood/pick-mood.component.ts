@@ -6,6 +6,7 @@ import {NgClass, NgForOf} from "@angular/common";
 import {SharedModule} from "primeng/api";
 import {ActivatedRoute} from "@angular/router";
 import {routes} from "../app.routes";
+import {EmojisService} from "./emojis.service";
 
 @Component({
   selector: 'app-pick-mood',
@@ -22,28 +23,24 @@ import {routes} from "../app.routes";
   encapsulation: ViewEncapsulation.None
 })
 export class PickMoodComponent implements OnInit {
-
   @ViewChild('dialog') dialog: Dialog;
+  emojis: string[];
   selected: string = '';
-  emojis: string[] = ['😂', '😍', '😊', '😭', '😎', '😀', '😘', '😒', '😳', '🤔'];
   constructor(
     private httpService: HttpService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private emojisService: EmojisService
   ) {}
 
   ngOnInit() {
-    let e = this.emojis[0].toString();
-  }
-
-  onSelectEmoji(emoji: string) {
-    if(this.selected === emoji) return this.selected = '';
-    this.selected = emoji;
+    this.emojis = this.emojisService.emojis;
   }
 
   onSaveMood() {
     this.dialog.visible = false;
     let emojiId = this.emojis.indexOf(this.selected);
-    this.httpService.token = this.route.snapshot.queryParams['userId'];
+    this.emojisService.selectedEmoji = this.selected;
+    this.httpService.token = 'Bearer ' + this.route.snapshot.queryParams['token'];
     this.httpService.sendMood(emojiId).subscribe(res => {
       console.log(res);
     })

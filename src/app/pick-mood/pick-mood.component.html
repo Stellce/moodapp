@@ -1,19 +1,9 @@
-<p-dialog
-  [visible]="true"
-  header="Jaki masz nastrój?"
-  [modal]="true"
-  [draggable]="false"
-  [resizable]="false"
-  [blockScroll]="true"
-  [closable]="false"
-  [closeOnEscape]="false"
-  #dialog
->
+<p-dialog [visible]="true" header="Jaki masz nastrój?" [modal]="true" [draggable]="false" [resizable]="false" [blockScroll]="true" [closable]="false" [closeOnEscape]="false" #dialog>
   <span
     class="emoji"
     [ngClass]="{checked: selected === emoji, unchecked: selected !== emoji}"
     *ngFor="let emoji of emojis"
-    (click)="onSelectEmoji(emoji)"
+    (click)="selected = selected === emoji ? '' : emoji"
   >{{emoji}}</span>
   <ng-template pTemplate="footer">
     <p-button label="Save" icon="pi pi-check" (click)="onSaveMood()"></p-button>

@@ -1,6 +1,21 @@
 <app-pick-mood></app-pick-mood>
+<p-toolbar styleClass="bg-gray-900 shadow-2" [style]="{ 'border-radius': '3rem', 'background-image': 'linear-gradient(to right, var(--bluegray-500), var(--bluegray-700))' }">
+  <ng-template pTemplate="start"></ng-template>
+  <ng-template pTemplate="center">
+    <div class="flex flex-wrap align-items-center gap-3">
+      <button class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200"><i class="pi pi-pencil text-2xl">{{selectedEmoji}}</i></button>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="end"></ng-template>
+</p-toolbar>
 <div class="post-list">
-  <p-card class="post">
-
+  <p-card class="post" *ngFor="let post of posts">
+    <div class="author">
+      {{post.user.firstName + " " + post.user.lastName}}
+    </div>
+    <div class="emoji-date">
+      <span>{{post.createdAt | date}}</span>
+      <span>{{emojis[post.emojiId]}}</span>
+    </div>
   </p-card>
 </div>
