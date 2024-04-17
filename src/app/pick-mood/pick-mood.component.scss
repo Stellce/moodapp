@@ -2,46 +2,44 @@
   user-select: none;
 }
 p-dialog {
-  width: 100%;
   display: flex;
   justify-content: center;
-
+  padding: 10px;
   .p-dialog {
-    max-width: 500px;
+    max-width: 320px;
   }
   .p-dialog-header {
     justify-content: center;
+    padding: 24px 0 0 0;
   }
   .p-dialog-content {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 20px 5px;
+    padding: 24px 24px 24px;
+    .emoji {
+      max-width: 600px;
+      font-size: 35px;
+      cursor: pointer;
+      scale: 1;
+      transition: scale ease-in-out 250ms;
+    }
+    .checked {
+      scale: 1.3;
+      filter: drop-shadow(0 10px 2px #f9ff58);
+      transition: filter ease-in-out 200ms;
+    }
+
+    .unchecked {
+      &:hover {
+        scale: 1.3;
+      }
+    }
   }
-}
 
-.emoji {
-  max-width: 600px;
-  font-size: 50px;
-  cursor: pointer;
-  scale: 1;
-  transition: scale ease-in-out 250ms;
-}
-
-.checked {
-  scale: 1.3;
-  filter: drop-shadow(0 10px 2px #f9ff58);
-  transition: filter ease-in-out 200ms;
-}
-
-.unchecked {
-  &:hover {
-    scale: 1.3;
+  p-button button {
+    width: 100% !important;
   }
-}
-
-p-button button {
-  width: 100% !important;
 }

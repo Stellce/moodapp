@@ -1,8 +1,8 @@
-import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation} from '@angular/core';
 import {Dialog, DialogModule} from "primeng/dialog";
 import {HttpService} from "../http.service";
 import {ButtonModule} from "primeng/button";
-import {NgClass, NgForOf} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {SharedModule} from "primeng/api";
 import {ActivatedRoute} from "@angular/router";
 import {routes} from "../app.routes";
@@ -16,7 +16,8 @@ import {EmojisService} from "./emojis.service";
     DialogModule,
     NgForOf,
     SharedModule,
-    NgClass
+    NgClass,
+    NgIf
   ],
   templateUrl: './pick-mood.component.html',
   styleUrl: './pick-mood.component.scss',
@@ -24,6 +25,8 @@ import {EmojisService} from "./emojis.service";
 })
 export class PickMoodComponent implements OnInit {
   @ViewChild('dialog') dialog: Dialog;
+  @Input() isDialogShown: boolean;
+  @Output() isDialogShownChange = new EventEmitter<boolean>();
   emojis: string[];
   selected: string = '';
   constructor(
@@ -38,6 +41,8 @@ export class PickMoodComponent implements OnInit {
 
   onSaveMood() {
     this.dialog.visible = false;
+    this.isDialogShown = false;
+    this.isDialogShownChange.emit(false);
     let emojiId = this.emojis.indexOf(this.selected);
     this.emojisService.selectedEmoji = this.selected;
     this.httpService.token = 'Bearer ' + this.route.snapshot.queryParams['token'];
@@ -45,5 +50,4 @@ export class PickMoodComponent implements OnInit {
       console.log(res);
     })
   }
-
 }

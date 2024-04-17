@@ -1,22 +1,27 @@
-nav {
-  background: #2e97c0;
-  height: 65px;
-}
 .post-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.post .p-card-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0;
+
+.post {
+  .p-card :first-child{
+    background: var(--blue-500);
+    color: white;
+  }
+  .p-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+  }
 }
 
 .emoji-date {
   font-size: 16px;
-  & span:nth-child(2) {
-    font-size: 25px;
-  }
+}
+
+.emoji {
+  font-size: 95px;
 }

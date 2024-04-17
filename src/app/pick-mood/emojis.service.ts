@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmojisService {
   private _emojis: string[] = ['😂', '😍', '😊', '😭', '😎', '😀', '😘', '😒', '😳', '🤔'];
-  private _selectedEmoji: string;
+  private _selectedEmoji = new BehaviorSubject<string>('');
 
-  get selectedEmoji(): string {
-    return this._selectedEmoji;
+  get selectedEmoji(): Observable<string> {
+    return this._selectedEmoji.asObservable();
   }
 
   set selectedEmoji(value: string) {
-    this._selectedEmoji = value;
+    this._selectedEmoji.next(value);
   }
 
-  get emojis() {
+  get emojis(): string[] {
     return this._emojis;
   }
 
