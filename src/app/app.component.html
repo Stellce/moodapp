@@ -1,4 +1,4 @@
-<app-pick-mood [(isDialogShown)]="isPickMoodShown"></app-pick-mood>
+<app-pick-mood *ngIf="isPickMoodShown" [(isDialogShown)]="isPickMoodShown"></app-pick-mood>
 <div class="post-list">
   <p-card class="post" *ngIf="!isPickMoodShown" (click)="isPickMoodShown = !isPickMoodShown">
     <div class="author">
