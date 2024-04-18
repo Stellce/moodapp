@@ -4,8 +4,15 @@
   gap: 10px;
 }
 
+.post:first-child {
+  .p-card {
+    background: var(--blue-500);
+    border-radius: 0 0 6px 6px;
+  }
+}
+
 .post {
-  .p-card :first-child{
+  .p-card {
     background: var(--blue-500);
     color: white;
   }
@@ -16,10 +23,6 @@
     align-items: center;
     padding: 0;
   }
-}
-
-.emoji-date {
-  font-size: 16px;
 }
 
 .emoji {

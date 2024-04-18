@@ -2,7 +2,7 @@
 <div class="post-list">
   <p-card class="post" *ngIf="!isPickMoodShown" (click)="isPickMoodShown = !isPickMoodShown">
     <div class="author">
-      Your status:
+      Twój nastrój:
       <i class="pi pi-pencil text-2xl"></i>
     </div>
     <div class="emoji">
@@ -13,9 +13,7 @@
     <div class="author">
       {{post.user.firstName + " " + post.user.lastName}}
     </div>
-    <div class="emoji-date">
-      <span>{{post.createdAt | date}}</span>
-      <span class="emoji">{{emojis[post.emojiId]}}</span>
-    </div>
+    <span class="emoji">{{emojis[post.emojiId]}}</span>
+    <span [style]="{'font-size': '16px'}">{{post.createdAt | date}}</span>
   </p-card>
 </div>

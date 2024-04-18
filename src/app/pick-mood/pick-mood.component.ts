@@ -45,6 +45,7 @@ export class PickMoodComponent implements OnInit {
     this.isDialogShownChange.emit(false);
     let emojiId = this.emojis.indexOf(this.selected);
     this.emojisService.selectedEmoji = this.selected;
+    console.log(this.route.snapshot)
     this.httpService.token = 'Bearer ' + this.route.snapshot.queryParams['token'];
     this.httpService.sendMood(emojiId).subscribe(res => {
       console.log(res);

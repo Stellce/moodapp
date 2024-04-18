@@ -13,8 +13,9 @@ export class HttpService {
 
   sendMood(emojiId: number) {
     let params = (new HttpParams()).append('emojiId', emojiId);
-    let headers = (new HttpHeaders()).append('Authorization', this.token)
+    let headers = (new HttpHeaders()).append('Authorization', this.token);
     console.log(this.token);
+    console.log(headers);
     return this.http.post(
       `${environment.backendUrl}/posts`,
       {},
@@ -26,6 +27,8 @@ export class HttpService {
   }
 
   getAllPosts() {
-    return this.http.get<Post[]>(`${environment.backendUrl}/posts`)
+    let headers = (new HttpHeaders()).append('Authorization', this.token);
+    console.log(headers);
+    return this.http.get<Post[]>(`${environment.backendUrl}/posts`, {headers: headers});
   }
 }
